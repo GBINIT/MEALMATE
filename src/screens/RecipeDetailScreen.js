@@ -61,6 +61,7 @@ export default function RecipeDetailScreen(props) {
       <StatusBar style="white"></StatusBar>
       {/* <Text>RecipeDetail</Text> */}
       {/* Recipe Image */}
+      
       <View className="flex-row justify-center">
         <CachedImage
           uri={item.strMealThumb}

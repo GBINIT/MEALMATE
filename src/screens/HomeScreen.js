@@ -11,7 +11,7 @@ export default function HomeScreen() {
   const [activeCategory , setActiveCategory] = useState("Beef")
   const [categories , setCategories] = useState([])
   const [meals ,setMeals] = useState([])
-
+const mealId=45;
   useEffect (()=>{
     getCategories();
     getRecipes();
@@ -37,7 +37,7 @@ export default function HomeScreen() {
     }
   }
 
-  const getRecipes = async(category = "Beef") => {
+  const getRecipes = async(category = "vegan") => {
     try {
       const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       if(res && res.data){
