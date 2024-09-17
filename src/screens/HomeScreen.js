@@ -11,6 +11,7 @@ export default function HomeScreen() {
   const [activeCategory , setActiveCategory] = useState("Beef")
   const [categories , setCategories] = useState([])
   const [meals ,setMeals] = useState([])
+  const idMeal = 45;
 
   useEffect (()=>{
     getCategories();
@@ -37,17 +38,33 @@ export default function HomeScreen() {
     }
   }
 
+  // const getRecipes = async(category = "Beef") => {
+  //   try {
+  //     const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+  //     if(res && res.data){
+  //       setMeals(res.data.meals)
+  //       console.log(res.data.meals);
+        
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+      
+  //   }
+  // }
   const getRecipes = async(category = "Beef") => {
     try {
       const res = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       if(res && res.data){
-        setMeals(res.data.meals)
-        // console.log(res.data.meals);
-        
+        // console.log("Full API response:", res.data);
+        if (res.data.meals) {
+          setMeals(res.data.meals)
+          // console.log("Meals:", res.data.meals);
+        } else {
+          console.log("No meals found in the response");
+        }
       }
     } catch (error) {
-      console.log(error.message);
-      
+      console.log("Error:", error.message);
     }
   }
   return (
@@ -110,7 +127,7 @@ export default function HomeScreen() {
 
           {/* Recipes */}
           <View>
-            <Recipes meals={meals} categories={categories} idMeal = {mealId}>
+            <Recipes meals={meals} categories={categories} idMeal = {idMeal}>
               
             </Recipes> 
           </View>
